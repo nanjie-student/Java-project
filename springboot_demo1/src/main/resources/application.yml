@@ -1,0 +1,37 @@
+#挑选执行环境   SpringCloud微服务配置 N多个YML配置文件 配置中心
+spring:
+  profiles:
+    active : prod
+
+---   #环境分割线
+#语法
+  # 1. 数据结构 key: value   使用:(空格)链接
+  # 2. YML文件中有文件父子级结构 采用缩进的方式实现.
+
+#定义环境名称   2.4.0版本需要如下的格式
+spring:
+  config:
+    activate:
+      on-profile: test
+
+server:
+  port: 8090
+
+# 为Redis设定属性和属性值
+redis:
+    host: 127.0.0.1
+    port: 6379
+
+
+# 通过---方式实现YML环境的分割
+---
+spring:
+  profiles: prod   #2.4.0以下的写法
+
+server:
+  port: 9000
+
+# 为Redis设定属性和属性值
+redis.host: 192.168.1.1
+redis.port: 7000
+

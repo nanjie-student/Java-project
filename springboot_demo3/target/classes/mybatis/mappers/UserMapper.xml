@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 唯一确定Mapper接口的  一定不能重复-->
+<mapper namespace="com.UserMapper">
+
+	<!--定义别名包 type-aliases-package: com.jt.pojo
+	 	在程序执行时,如果定义了别名包则会自动的拼接路径
+	 	resultType="com.jt.pojo.User"
+	 	规则:	 1.如果根据别名找不到则根据自己的定义查询类型
+	 -->
+	<select id="findAll" resultType="User">
+		select * from user
+	</select>
+
+	<!--
+		开启驼峰映射规则的说明
+		说明:属性user_id 根据驼峰命名规则应该叫userId
+		例子:
+			1.user表:     user_id user_name user_age
+			2.User对象:   userId, userName  userAge    驼峰命名规则
+		只要开启驼峰映射规则,则Mybatis会自动的完成映射.
+		原理:
+			user_id(字段) ~~~去除中间的"_"线之后首字母大写 userId
+			将数据映射给属性userId(属性)
+
+		注意事项:一旦开启驼峰映射规则,则必须按照要求来写.
+	-->
+</mapper>

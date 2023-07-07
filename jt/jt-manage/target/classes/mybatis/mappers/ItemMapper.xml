@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jt.mapper.ItemMapper">
+	<!--
+		1.实现商品删除
+		知识点:  Mybatis参数传递问题(版本有关系)
+		原因:	Mybatis底层实现时通过下标的方式取值
+				但是下标默认值都是0 mybatis只能传递一个参数(单值传递)
+
+		需求:    需要多值传递.  核心思想 将多值转化为单值.
+		常用方法:   1.使用对象封装  2.可以封装为数组/list   3.Map集合
+		取值方式:   1.#{对象的属性} 2. 特殊字符 array/list  3.#{key}
+
+		高版本说明: 如果参数的个数多余1个时,则默认采用Map的方式进行封装.
+		低版本说明:如果key有多个,则需要手动封装
+	-->
+	<delete id="deleteItems">
+		delete from tb_item where id in (
+		<foreach collection="array" separator="," item="id" >
+			#{id}
+		</foreach>
+		)
+	</delete>
+	<update id="updateStatus">
+		update tb_item set status = #{status}, update = now()
+		where id in(
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>
+		)
+	</update>
+	<insert id="" useGeneratedKeys="true" keyColumn="id" keyProperty="id"></insert>
+	
+</mapper>

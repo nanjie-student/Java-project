@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.jt</groupId>
+	<artifactId>springboot_demo1</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>springboot_demo1</name>
+	<!--打包种类:  jar war  pom(聚合项目 大型项目包含小项目)-->
+	<packaging>jar</packaging>
+	<description>Demo project for Spring Boot</description>
+
+
+	<!--1.parent标签作用: 定义项目版本依赖
+		springBoot官网进行调试之后的产品
+		将springBoot所有关联的jar包统一的方式进行定义
+	-->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.0</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<!--指定JDK版本-->
+		<java.version>1.8</java.version>
+		<!--跳过测试类打包-->
+		<skipTests>true</skipTests>
+	</properties>
+
+	<!--依赖的作用:依赖需要的jar包文件  -->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<!--spring-boot-starter-xxx springboot启动项
+			开箱即用:
+			 只需要引入特定的jar包简单的配置,即可以使用该功能
+			 -->
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!--支持热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<!--让程序使用maven命令时,按照指定插件运行 必须配置-->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
